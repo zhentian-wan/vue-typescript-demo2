@@ -10,19 +10,19 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import Route from 'vue-router';
 
 @Component({})
-export default class HelloTs extends Vue{
-    created() {
-        console.log("Hello TS created")
+export default class HelloTs extends Vue {
+    public created() {
+        console.log('Hello TS created');
     }
 
-    beforeRouteEnter(to: Route, from: Route, next: Function) {
-        console.log("beforeRouteEnter")
+    public beforeRouteEnter(to: Route, from: Route, next: Function) {
+        console.log('beforeRouteEnter');
         next();
     }
 
-    beforeRouteLeave(to: Route, from: Route, next: Function) {
-        console.log("beforeRouteLeave")
-         next();
+    public beforeRouteLeave(to: Route, from: Route, next: Function) {
+        console.log('beforeRouteLeave');
+        next();
     }
 }
 </script>

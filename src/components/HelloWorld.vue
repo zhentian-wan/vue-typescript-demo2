@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 v-colorDirective.background = "{color: 'white', background: 'green'}">{{ msg }}</h1>
     <h2>{{ fullMessage }}</h2>
     <button @click="click">Click</button>
     <button @click="parentClicked">Parent Click</button>
@@ -11,22 +11,27 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Parent from './Parent';
+import colorDirective from '../directives/color-directive';
 
-@Component
+@Component({
+    directives: {
+        colorDirective
+    }
+})
 export default class HelloWorld extends Parent {
   @Prop() private msg!: string;
 
   // replace computed props
   get fullMessage() {
-    return `${this.msg} should be fullmessage from a getter`
+    return `${this.msg} should be fullmessage from a getter`;
   }
 
-  created() {
-    console.log("Component is created")
+  public created() {
+    console.log('Component is created');
   }
 
-  click() {
-    alert('Should replace what used to be defined in methods objects')
+  public click() {
+    alert('Should replace what used to be defined in methods objects');
   }
 }
 </script>

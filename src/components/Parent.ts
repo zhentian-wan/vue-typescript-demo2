@@ -3,15 +3,15 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Parent extends Vue {
-    created() {
-        console.log("Parent is created")
+    public created() {
+        console.log('Parent is created');
     }
 
-    click() {
-        console.log("Parent is clicked")
+    public click() {
+        console.log('Parent is clicked');
     }
 
-    parentClicked() {
-        console.log("Parent is clicked")
+    public parentClicked() {
+        console.log('Parent is clicked');
     }
 }
