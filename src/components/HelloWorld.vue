@@ -10,10 +10,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue , Watch} from 'vue-property-decorator';
 import Parent from './Parent';
 import colorDirective from '../directives/color-directive';
 import MyCheckbox from './MyCheckbox.vue';
+
+type Sum = {
+    acc: number
+};
 
 @Component({
     components: {MyCheckbox},
@@ -28,6 +32,15 @@ export default class HelloWorld extends Parent {
       value: 'checkbox-id',
       checked: true
   };
+
+  sum= {
+      acc: 0
+  };
+
+  @Watch('sum.acc')
+  countSum(newVal, oldVal) {
+    console.log("newVal", newVal, "oldVal", oldVal);
+  }
 
   @Prop({
       type: String,
@@ -44,7 +57,7 @@ export default class HelloWorld extends Parent {
   }
 
   public click() {
-    alert('Should replace what used to be defined in methods objects');
+      this.sum.acc++;
   }
 }
 </script>
