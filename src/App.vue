@@ -8,6 +8,19 @@
   </div>
 </template>
 
+<script lang="ts">
+  import axios from 'axios'
+  import { Component, Vue } from 'vue-property-decorator';
+  import {Provide} from "vue-property-decorator";
+
+  @Component({
+  })
+  export default class App extends Vue {
+    @Provide() http = axios;
+  }
+
+</script>
+
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

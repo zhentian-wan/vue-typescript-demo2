@@ -10,10 +10,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue , Watch} from 'vue-property-decorator';
+    import {Component, Inject, Prop, Vue, Watch} from 'vue-property-decorator';
 import Parent from './Parent';
 import colorDirective from '../directives/color-directive';
 import MyCheckbox from './MyCheckbox.vue';
+    import {AxiosInstance} from "axios";
 
 type Sum = {
     acc: number
@@ -37,10 +38,7 @@ export default class HelloWorld extends Parent {
       acc: 0
   };
 
-  @Watch('sum.acc')
-  countSum(newVal, oldVal) {
-    console.log("newVal", newVal, "oldVal", oldVal);
-  }
+  @Inject() http: AxiosInstance;
 
   @Prop({
       type: String,
@@ -53,7 +51,8 @@ export default class HelloWorld extends Parent {
   }
 
   public created() {
-    console.log('Component is created');
+      this.http.get('https://jsonplaceholder.typicode.com/users')
+          .then(console.log)
   }
 
   public click() {
