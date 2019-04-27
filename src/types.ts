@@ -5,6 +5,7 @@ export const TYPES = {
 
 export interface Todo {
     text: string;
+    checked: boolean;
 }
 
 export interface State {
