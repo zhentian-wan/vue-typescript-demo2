@@ -1,17 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import todos, {getters, mutations} from './todos';
+import {todos} from './todos';
+import {login} from './login';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    ...todos,
-  },
-  getters,
-  mutations,
-  actions: {
-
-  },
+  modules: {
+    todos,
+    login,
+  }
 });

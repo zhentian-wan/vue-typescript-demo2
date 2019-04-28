@@ -1,5 +1,6 @@
 import {GetterTree, MutationTree} from 'vuex';
 import {State} from '../types';
+import {Todo} from '../types';
 
 const state: State = {
     todos: [
@@ -9,18 +10,41 @@ const state: State = {
     ],
 };
 
-export const getters: GetterTree<State, any> = {
+const getters: GetterTree<State, any> = {
     todos: state => state.todos.filter(t => !t.checked),
     dones: state => state.todos.filter(t => t.checked)
 };
 
-export const mutations: MutationTree<State> = {
+const mutations: MutationTree<State> = {
     addTodo(state, newTodo) {
         const copy = {
             ...newTodo
         };
         state.todos.push(copy);
+    },
+    toggleTodo(state, todo) {
+        todo.checked = !todo.checked;
     }
 };
 
-export default state;
+const actions: ActionTree<tate, any> = {
+    addTodoAsync(context, id) {
+        fetch('https://jsonplaceholder.typicode.com/posts/'+id)
+            .then(data => data.json())
+            .then(item => {
+                const todo: Todo = {
+                    checked: false,
+                    text: item.title
+                }
+
+                context.commit('addTodo', todo);
+            })
+    }
+}
+
+export const todos = {
+    actions,
+    state,
+    mutations,
+    getters
+};

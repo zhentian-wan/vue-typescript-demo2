@@ -11,3 +11,8 @@ export interface Todo {
 export interface State {
     todos: Todo[];
 }
+
+export interface LoginState = {
+    user: string;
+    isLoggedIn: boolean;
+}
