@@ -7,6 +7,12 @@ import store from '@/store/index';
 import '@/registerServiceWorker';
 Vue.config.productionTip = false;
 
+const load = true;
+if (load) {
+  import('./store/login').then(({login}) => {
+    store.registerModule('login', login);
+  });
+}
 
 new Vue({
   router,

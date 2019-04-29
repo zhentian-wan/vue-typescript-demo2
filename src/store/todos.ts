@@ -1,8 +1,8 @@
 import {GetterTree, MutationTree} from 'vuex';
-import {State} from '../types';
+import {TodosState, RootState} from '../types';
 import {Todo} from '../types';
 
-const state: State = {
+const state: TodosState = {
     todos: [
         {text: 'Buy milk', checked: false},
         {text: 'Learning', checked: true},
@@ -10,31 +10,32 @@ const state: State = {
     ],
 };
 
-const getters: GetterTree<State, any> = {
-    todos: state => state.todos.filter(t => !t.checked),
-    dones: state => state.todos.filter(t => t.checked)
+const getters: GetterTree<TodosState, RootState> = {
+    todos: (state, getters, rootState) => state.todos.filter(t => !t.checked),
+    dones: (state, getters, rootState) => state.todos.filter(t => t.checked)
 };
 
-const mutations: MutationTree<State> = {
+const mutations: MutationTree<TodosState> = {
     addTodo(state, newTodo) {
         const copy = {
             ...newTodo
         };
         state.todos.push(copy);
     },
-    toggleTodo(state, todo) {
+    toggleTodo(TodosState, todo) {
         todo.checked = !todo.checked;
     }
 };
 
-const actions: ActionTree<tate, any> = {
+const actions: ActionTree<TodosState, RootState> = {
     addTodoAsync(context, id) {
+        console.log('root', context)
         fetch('https://jsonplaceholder.typicode.com/posts/'+id)
             .then(data => data.json())
             .then(item => {
                 const todo: Todo = {
                     checked: false,
-                    text: item.title
+                    text: context.rootState.login.user + ': ' + item.title
                 }
 
                 context.commit('addTodo', todo);

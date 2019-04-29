@@ -8,7 +8,12 @@ export interface Todo {
     checked: boolean;
 }
 
-export interface State {
+export interface RootState {
+    todos: TodosState;
+    login: LoginState
+}
+
+export interface TodosState {
     todos: Todo[];
 }
 

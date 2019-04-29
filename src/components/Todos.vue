@@ -31,13 +31,13 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import {Action, State, Getter, Mutation} from 'vuex-class';
-import {Todo} from '../types';
+import {TodosState, Todo} from '../types';
 
 @Component({
 })
 export default class Todos extends Vue {
-    @Getter todos: Todo[];
-    @Getter dones: Todo[];
+    @Getter todos: TodosState;
+    @Getter dones: TodosState;
 
     @Mutation addTodo;
     @Mutation toggleTodo;

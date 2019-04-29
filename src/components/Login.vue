@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section v-if="login">
         <button v-if="!login.isLoggedIn" @click="loginMutation">Login</button>
         <p v-else>Hello {{login.user}}</p>
     </section>
