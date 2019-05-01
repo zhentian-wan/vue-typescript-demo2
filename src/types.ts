@@ -16,14 +16,19 @@ export interface HistoryState {
 
 export interface RootState {
     todos: TodosState;
-    login: LoginState
+    login: LoginState,
+    history: HistoryState
 }
 
 export interface TodosState {
     todos: Todo[];
 }
 
-export interface LoginState = {
+export interface LoginState {
     user: string;
     isLoggedIn: boolean;
+}
+
+export interface PluginOptions {
+    presist: boolean
 }

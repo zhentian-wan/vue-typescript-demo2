@@ -10,5 +10,5 @@ export default new Vuex.Store({
   modules: {
     todos,
   },
-  plugins: [history]
+  plugins: [history({presist: true})]
 });
