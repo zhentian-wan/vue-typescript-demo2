@@ -1,3 +1,5 @@
+import {MutationPayload} from 'vuex';
+
 export const TYPES = {
     UsersService: Symbol('UsersService'),
     HttpClient: Symbol('HttpClient')
@@ -6,6 +8,10 @@ export const TYPES = {
 export interface Todo {
     text: string;
     checked: boolean;
+}
+
+export interface HistoryState {
+    history: MutationPayload[]
 }
 
 export interface RootState {
