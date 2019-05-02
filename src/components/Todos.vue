@@ -36,12 +36,12 @@ import {TodosState, Todo} from '../types';
 @Component({
 })
 export default class Todos extends Vue {
-    @Getter todos: TodosState;
-    @Getter dones: TodosState;
+    @Getter('todos/todos') todos: TodosState;
+    @Getter('todos/dones') dones: TodosState;
 
-    @Mutation addTodo;
-    @Mutation toggleTodo;
-    @Action addTodoAsync;
+    @Mutation('todos/addTodo') addTodo;
+    @Mutation('todos/toggleTodo') toggleTodo;
+    @Action('todos/addTodoAsync') addTodoAsync;
 
     newTodo: Todo = {
       text: '',

@@ -17,7 +17,8 @@ export interface HistoryState {
 export interface RootState {
     todos: TodosState;
     login: LoginState,
-    history: HistoryState
+    history: HistoryState,
+    counter: CounterState
 }
 
 export interface TodosState {
@@ -31,4 +32,12 @@ export interface LoginState {
 
 export interface PluginOptions {
     presist: boolean
+}
+
+export interface SpinnerState {
+    loading: boolean;
+}
+
+export interface CounterState {
+    total: number
 }

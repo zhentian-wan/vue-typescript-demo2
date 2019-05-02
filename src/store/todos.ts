@@ -1,4 +1,4 @@
-import {GetterTree, MutationTree} from 'vuex';
+import {GetterTree, ActionTree,  MutationTree} from 'vuex';
 import {TodosState, RootState} from '../types';
 import {Todo} from '../types';
 
@@ -22,7 +22,7 @@ const mutations: MutationTree<TodosState> = {
         };
         state.todos.push(copy);
     },
-    toggleTodo(TodosState, todo) {
+    toggleTodo(state, todo) {
         todo.checked = !todo.checked;
     }
 };
@@ -47,5 +47,6 @@ export const todos = {
     actions,
     state,
     mutations,
-    getters
+    getters,
+    namespaced: true
 };
