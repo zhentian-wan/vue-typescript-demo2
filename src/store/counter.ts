@@ -17,7 +17,7 @@ const mutations: MutationTree<CounterState> = {
     }
 }
 
-const actions: ActionTree<CounterState, RootState> = {
+export const actions: ActionTree<CounterState, RootState> = {
     increase({commit}) {
         commit('INCREASE')
     },

@@ -1,7 +1,7 @@
 <template>
     <div class="counter">
-        <div class="total">
-            {{total}} -- {{overflow(5)}}
+        <div class="total" v-bind:style="{ color: overflow(5) ? 'red': 'black'}">
+            {{total}}
         </div>
         <button @click="increase">+</button>
         <button @click="decrease">-</button>
@@ -19,7 +19,7 @@ import {mapGetters, mapActions} from 'vuex';
 export default class Counter extends Vue {
 
     
-    @Getter('counter/overflow') overflow: boolean;
+    @Getter('counter/overflow') overflow;
 
     @Prop() total: number;
     @Emit('increase') increase() {};
