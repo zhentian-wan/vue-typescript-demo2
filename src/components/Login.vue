@@ -7,13 +7,15 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import {State, Mutation} from 'vuex-class';
+import {State, Mutation, namespace} from 'vuex-class';
 import {LoginState} from '../types';
+
+const LoginMutation = namespace('login', Mutation)
 
 @Component()
 export default class Login extends Vue{
     @State login: LoginState;
-    @Mutation('login') loginMutation;
+    @LoginMutation('login') loginMutation;
 }
 </script>
 

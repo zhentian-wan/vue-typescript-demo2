@@ -1,4 +1,5 @@
-import {GetterTree, ActionTree,  MutationTree} from 'vuex';
+
+import {GetterTree, MutationTree, ActionTree, Module} from 'vuex';
 import {TodosState, RootState} from '../types';
 import {Todo} from '../types';
 
@@ -29,7 +30,6 @@ const mutations: MutationTree<TodosState> = {
 
 const actions: ActionTree<TodosState, RootState> = {
     addTodoAsync(context, id) {
-        console.log('root', context)
         fetch('https://jsonplaceholder.typicode.com/posts/'+id)
             .then(data => data.json())
             .then(item => {
@@ -39,11 +39,12 @@ const actions: ActionTree<TodosState, RootState> = {
                 }
 
                 context.commit('addTodo', todo);
+                context.commit('login/login', todo, {root: true});
             })
     }
 }
 
-export const todos = {
+export const todos: Module<TodosState, RootState> = {
     actions,
     state,
     mutations,

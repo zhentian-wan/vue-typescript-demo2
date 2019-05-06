@@ -30,18 +30,23 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import {Action, State, Getter, Mutation} from 'vuex-class';
+import {Action, State, Getter, Mutation, namespace} from 'vuex-class';
 import {TodosState, Todo} from '../types';
+
+const TodoGetter = namespace('todos', Getter);
+const TodoAction = namespace('todos', Action);
+const TodoMutation = namespace('todos', Mutation);
 
 @Component({
 })
 export default class Todos extends Vue {
-    @Getter('todos/todos') todos: TodosState;
-    @Getter('todos/dones') dones: TodosState;
 
-    @Mutation('todos/addTodo') addTodo;
-    @Mutation('todos/toggleTodo') toggleTodo;
-    @Action('todos/addTodoAsync') addTodoAsync;
+    @TodoGetter todos: TodosState;
+    @TodoGetter dones: TodosState;
+
+    @TodoMutation addTodo;
+    @TodoMutation toggleTodo;
+    @TodoAction addTodoAsync;
 
     newTodo: Todo = {
       text: '',

@@ -1,12 +1,12 @@
-import {GetterTree, MutationTree} from 'vuex'
-import {LoginState} from '../types';
+import {GetterTree, MutationTree, Module} from 'vuex'
+import {LoginState, RootState} from '../types';
 
 const state: LoginState = {
     user: '',
     isLoggedIn: false,
 }
 
-const getters: GetterTree<LoginState, any> = {
+const getters: GetterTree<LoginState, RootState> = {
 
 }
 
@@ -17,8 +17,9 @@ const mutations: MutationTree<LoginState> = {
     }
 }
 
-export const login = {
+export const login: Module<LoginState, RootState> = {
     state,
     getters,
     mutations,
+    namespaced: true
 }
